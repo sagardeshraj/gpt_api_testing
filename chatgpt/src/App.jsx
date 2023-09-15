@@ -7,19 +7,22 @@ function App() {
   const [ output, setOutput ] = useState('');
 
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
   });
 
   async function main(msg) {
-    const completion = await openai.chat.completions.create({
-      messages: [{ role: 'system', content: 'You are a phone reviewer if user gives minimam two point about the phone you should responde with a review related to the points or whatever he wants to say(keep it short unless its length is specified).' },
-                 { role: 'user', content: msg },
-      ],
-      model: 'gpt-3.5-turbo',
-    });
-    setOutput(completion.choices[0].message.content)
-    console.log();
+    try {
+      const completion = await openai.chat.completions.create({
+        messages: [{ role: 'system', content: 'You are a phone reviewer if user gives minimam two point about the phone you should responde with a review related to the points or whatever he wants to say(keep it short unless its length is specified).' },
+                   { role: 'user', content: msg },
+        ],
+        model: 'gpt-3.5-turbo',
+      });
+      setOutput(completion.choices[0].message.content)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
