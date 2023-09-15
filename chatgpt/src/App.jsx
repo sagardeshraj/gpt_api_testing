@@ -7,7 +7,7 @@ function App() {
   const [ output, setOutput ] = useState('');
 
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true
   });
 
